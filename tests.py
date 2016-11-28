@@ -3,7 +3,7 @@
 import unittest
 
 from exceptions import AddressNotFound, InvalidCepException 
-from models import CEP
+from models import CEP , Address
 from pycep import PyCEP as pycep
 
 class TestCEPFormat(unittest.TestCase):
@@ -34,14 +34,24 @@ class TestCEPFormat(unittest.TestCase):
 		self.assertEqual("12363378",cep.value)
 
 
-class TestWrapperRequestAPI(unittest.TestCase):
+		
+class TestWrapperBehaviorRequestAPI(unittest.TestCase):
 
-	@unittest.skip("pass")
 	def test_wrapper_must_raise_exception_with_cep_is_wrong_format(self):
 
-		cep = pycep.get("999999999")
+		with self.assertRaises(InvalidCepException):
+			cep = pycep.get("999999999")
 		
+	def test_wrapper_must_raise_exception_when_cep_is_not_found(self):
 
+		with self.assertRaises(AddressNotFound):
+			cep = pycep.get("99999999")
+		
+	def test_wrapper_must_return_object_address_by_request_right(self):
+
+		address = pycep.get("01001000")
+
+		self.assertIsInstance(address,Address)
 
 
 if __name__ == "__main__":

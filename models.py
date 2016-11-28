@@ -24,3 +24,18 @@ class CEP(object):
 
 		value = value.replace("-","")
 		return value
+
+
+class Address(object):
+
+	def __init__(self,data):
+
+		self.cep = data["cep"]
+		self.logradouro = data["logradouro"]
+		self.complemento = data["complemento"]
+		self.bairro = data["bairro"]
+		self.localidade = data["localidade"]
+		self.uf = data["uf"]
+		self.unidade = data["unidade"]
+		self.ibge = int(data["ibge"])
+		self.gia = int(data["gia"])
