@@ -3,26 +3,24 @@
 import re
 from exceptions import InvalidCepException
 
-REGEX_CEP = r"\d{5}-?\d{3}"
+REGEX_CEP = r"^\d{5}-?\d{3}$"
 
 class CEP(object):
 	
 	def __init__(self,value):
-		self.value = value
+		self.value = self._normalized(value)
 
 		self._validate()
 
 	def _validate(self):
 		if not re.match(REGEX_CEP,self.value):
 			raise InvalidCepException("Invalid cep")
-		
 
-	@property
-	def normalized(self):
+	def _normalized(self,value):
 
 		'''
 		Normalizing cep value
 		'''
 
-		value = self.value.replace("-","")
+		value = value.replace("-","")
 		return value
