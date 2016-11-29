@@ -18,6 +18,8 @@ pip install -r requirements.txt
 
 Com as dependências instaladas você pode começar a requisitar os endereços.
 
+> **Dados retornados:** cep, logradouro, complemento, bairro, localidade, uf, unidade, ibge, gia
+
 ```python
 >>> from pycep import Pycep as pycep
 >>> endereco = pycep.get("01001-000")
