@@ -6,7 +6,7 @@ from exceptions import AddressNotFound, InvalidCepException
 from models import CEP , Address
 from pycep import PyCEP as pycep
 
-class TestCEPFormat(unittest.TestCase):
+class TestBehaviorCEPModel(unittest.TestCase):
 
 	def test_cep_must_be_right_format(self):
 		
@@ -35,7 +35,7 @@ class TestCEPFormat(unittest.TestCase):
 
 
 		
-class TestWrapperBehaviorRequestAPI(unittest.TestCase):
+class TestBehaviorWrapperRequestAPI(unittest.TestCase):
 
 	def test_wrapper_must_raise_exception_with_cep_is_wrong_format(self):
 
@@ -60,7 +60,7 @@ class TestWrapperBehaviorRequestAPI(unittest.TestCase):
 		self.assertIsInstance(address,Address)
 
 
-class TestBehaviorAddressFields(unittest.TestCase):
+class TestBehaviorAddressFieldsWithRequest(unittest.TestCase):
 
 	def setUp(self):
 		self.address = pycep.get("01001-000")
