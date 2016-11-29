@@ -66,7 +66,7 @@ class TestBehaviorAddressFieldsWithRequest(unittest.TestCase):
 		self.address = pycep.get("01001-000")
 
 	def test_model_address_must_return_cep_formatted(self):
-		self.assertEqual("64079-043",self.address.cep)
+		self.assertEqual("01001-000",self.address.cep)
 
 	def test_model_address_must_return_logradouro(self):
 		self.assertEqual("Praça da Sé",self.address.logradouro)
@@ -87,7 +87,7 @@ class TestBehaviorAddressFieldsWithRequest(unittest.TestCase):
 		self.assertEqual("",self.address.unidade)
 
 	def test_model_address_must_return_ibge(self):
-		self.assertEqual(33550308,self.address.ibge)
+		self.assertEqual(3550308,self.address.ibge)
 
 	def test_model_address_must_return_gia(self):
 		self.assertEqual(1004,self.address.gia)

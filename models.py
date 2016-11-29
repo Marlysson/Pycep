@@ -38,4 +38,4 @@ class Address(object):
 		self.uf = data["uf"]
 		self.unidade = data["unidade"]
 		self.ibge = int(data["ibge"])
-		self.gia = data["gia"]
+		self.gia = int(data["gia"]) if data["gia"] else data["gia"]
