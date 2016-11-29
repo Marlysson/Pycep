@@ -1,4 +1,4 @@
-## Pycep
+# Pycep
 
 Um wrapper para a api da ViaCEP para consulta dos endereços dos ceps do Brasil.
 Depois de requisitar o endereço de um cep você pode tratar o retorno como se fosse um objeto normal , inclusive já feito o cast para o valor adequado.
@@ -42,6 +42,8 @@ except InvalidCepException:
 ```
 
 ### Caso para o endereço não encontrado:
+
+Quando um endereço não é encontrado é levantada a exceção ```AddressNotFound``` que você pode capturar ela e tratar como quiser.
 
 ```python
 try:
