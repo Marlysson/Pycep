@@ -41,17 +41,57 @@ class TestWrapperBehaviorRequestAPI(unittest.TestCase):
 
 		with self.assertRaises(InvalidCepException):
 			cep = pycep.get("999999999")
-		
+	
 	def test_wrapper_must_raise_exception_when_cep_is_not_found(self):
 
 		with self.assertRaises(AddressNotFound):
 			cep = pycep.get("99999999")
 		
+	def test_wrapper_must_request_a_cep_correct_with_separator(self):
+		
+		address = pycep.get("01001-000")
+
+		self.assertIsInstance(address,Address)
+
 	def test_wrapper_must_return_object_address_by_request_right(self):
 
 		address = pycep.get("01001000")
 
 		self.assertIsInstance(address,Address)
+
+
+class TestBehaviorAddressFields(unittest.TestCase):
+
+	def setUp(self):
+		self.address = pycep.get("01001-000")
+
+	def test_model_address_must_return_cep_formatted(self):
+		self.assertEqual("64079-043",self.address.cep)
+
+	def test_model_address_must_return_logradouro(self):
+		self.assertEqual("Praça da Sé",self.address.logradouro)
+	
+	def test_model_address_must_return_complemento(self):
+		self.assertEqual("lado ímpar",self.address.complemento)	
+
+	def test_model_address_must_return_bairro(self):
+		self.assertEqual("Sé",self.address.bairro)
+
+	def test_model_address_must_return_localidade(self):
+		self.assertEqual("São Paulo",self.address.localidade)
+
+	def test_model_address_must_return_uf(self):
+		self.assertEqual("SP",self.address.uf)
+
+	def test_model_address_must_return_unidade(self):
+		self.assertEqual("",self.address.unidade)
+
+	def test_model_address_must_return_ibge(self):
+		self.assertEqual(33550308,self.address.ibge)
+
+	def test_model_address_must_return_gia(self):
+		self.assertEqual(1004,self.address.gia)
+
 
 
 if __name__ == "__main__":
