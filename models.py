@@ -9,20 +9,20 @@ class CEP(object):
 	
 	def __init__(self,value):
 		self.value = self._normalized(value)
-
+		
 		self._validate()
 
 	def _validate(self):
 		if not re.match(REGEX_CEP,self.value):
-			raise InvalidCepException("Invalid cep")
+			raise InvalidCepException("Invalid cep, must be string with ou without separator")
 
 	def _normalized(self,value):
 
-		'''
-		Normalizing cep value
-		'''
+		try:
+			value = value.replace("-","")
+		except AttributeError:
+			raise InvalidCepException("Invalid cep, must be string with ou without separator")		
 
-		value = value.replace("-","")
 		return value
 
 

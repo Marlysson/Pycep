@@ -8,31 +8,30 @@ from pycep import PyCEP as pycep
 
 class TestBehaviorCEPModel(unittest.TestCase):
 
-	def test_cep_must_be_right_format(self):
+	def test_cep_must_be_right_format_with_string(self):
 		
-		format_cep = CEP("00000111")
+		cep = CEP("00000111")
 
-	def test_cep_must_be_wrong_format(self):
+	def test_cep_must_be_wrong_format_with_string(self):
 
 		with self.assertRaises(InvalidCepException):
-			format_cep = CEP("999999999")
+			cep = CEP("999999999")
+
+	def test_cep_must_be_wrong_using_integers_without_separator(self):
+
+		with self.assertRaises(InvalidCepException):
+			cep = CEP(12345111)
 
 	def test_cep_must_be_wrong_with_separator(self):
 
 		with self.assertRaises(InvalidCepException):
-			format_cep = CEP("99999-9999")
+			cep = CEP("99999-9999")
 
 	def test_must_return_your_value_normalized(self):
 
 		cep = CEP("12345-678")
 
 		self.assertEqual("12345678",cep.value)
-
-	def test_must_return_your_value_normalized_without_separator(self):
-		cep = CEP("12363378")
-
-		self.assertEqual("12363378",cep.value)
-
 
 		
 class TestBehaviorWrapperRequestAPI(unittest.TestCase):
